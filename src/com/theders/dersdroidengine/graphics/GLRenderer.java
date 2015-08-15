@@ -18,7 +18,7 @@ public class GLRenderer implements GLSurfaceView.Renderer{
 		GLES20.glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
 		
 		m_Shader = new Shader("basicVert.vert", "basicFrag.frag");
-		m_Sprite = new Sprite(new Vector3f(100, 100, 0), 200, 200, m_Shader);
+		m_Sprite = new Sprite(new Vector3f(100, 100, 0), 100, 100, m_Shader);
 		
 		m_Shader.addUniform("transformation");
 	}
