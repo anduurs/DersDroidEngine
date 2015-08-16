@@ -15,7 +15,9 @@ public class Sprite {
 		m_Position = position;
 		m_Shader = shader;
 		m_Transform = new Transform();
-	
+		
+		m_Transform.translate(m_Position.getX(), m_Position.getY(), m_Position.getZ());
+		
 		Vertex[] vertices = {new Vertex(new Vector3f(position.getX(), position.getY(), 0)),
 							 new Vertex(new Vector3f(position.getX(), position.getY() + height, 0)),
 							 new Vertex(new Vector3f(position.getX() + width, position.getY() + height, 0)),
@@ -28,9 +30,8 @@ public class Sprite {
 	}
 	
 	public void render(){
-		m_Transform.translate(m_Position.getX(), m_Position.getY(), m_Position.getZ());
 		m_Shader.enable();
-		m_Shader.setUniform("transformation", m_Transform.getOrthographicProjection());
+		m_Shader.setUniform("transformation", m_Transform.getOrthoWorldProjection());
 		m_Mesh.render();
 		m_Shader.disable();
 	}

@@ -1,8 +1,9 @@
 package com.theders.dersdroidengine.core;
 
+import com.theders.dersdroidengine.component.Component;
 import com.theders.dersdroidengine.view.GameView;
 
-public class Transform {
+public class Transform extends Component{
 	
 	private Vector3f m_Translation, m_Rotation, m_Scaling;
 	private static Matrix4f m_Ortho;
@@ -42,7 +43,7 @@ public class Transform {
 		return modelMatrix;
 	}
 	
-	public Matrix4f getOrthographicProjection(){
+	public Matrix4f getOrthoWorldProjection(){
 		return m_Ortho.mul(getModelMatrix());
 	}
 
@@ -72,7 +73,7 @@ public class Transform {
 		Transform.m_Ortho = new Matrix4f().initOrthographicProjection(left, right, bottom, top, near, far);
 	}
 	
-	public Vector3f getTranslationVector() {return m_Translation;}
+	public Vector3f getPosition() {return m_Translation;}
 	public Vector3f getRotationVector() {return m_Rotation;}
 	public Vector3f getScalingVector() {return m_Scaling;}
 	

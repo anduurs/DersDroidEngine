@@ -10,6 +10,7 @@ import android.opengl.GLES20;
 import android.opengl.GLES30;
 
 public class Mesh {
+	
 	private int m_VBO;
 	private int m_IBO;
 	private int m_VAO;
@@ -33,7 +34,7 @@ public class Mesh {
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, m_VBO);
 		GLES20.glVertexAttribPointer(0, 3, GLES20.GL_FLOAT, false, Vertex.VERTEX_SIZE * 4, 0);
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
-		
+	
 		GLES30.glBindVertexArray(0);
 		
 		m_VAO = vaoBuffers[0];
