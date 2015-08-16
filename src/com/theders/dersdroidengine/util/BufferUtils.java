@@ -20,6 +20,9 @@ public class BufferUtils {
 			vertexBuffer.put(vertices[i].getPosition().getX());
 			vertexBuffer.put(vertices[i].getPosition().getY());
 			vertexBuffer.put(vertices[i].getPosition().getZ());
+			
+			vertexBuffer.put(vertices[i].getTexCoord().getX());
+			vertexBuffer.put(vertices[i].getTexCoord().getY());
 		}
 		
 		vertexBuffer.position(0);
