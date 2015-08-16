@@ -31,6 +31,14 @@ public abstract class Component {
 	public boolean isEnabled() {
 		return m_Enabled;
 	}
+	
+	public void enable(){
+		m_Enabled = true;
+	}
+	
+	public void disable(){
+		m_Enabled = false;
+	}
 
 	public String getTag() {
 		return m_Tag;

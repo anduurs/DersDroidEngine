@@ -1,4 +1,5 @@
 attribute vec3 v_Position;
+attribute vec2 v_TexCoord;
 
 uniform mat4 transformation;
 

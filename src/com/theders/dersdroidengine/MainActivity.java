@@ -1,5 +1,6 @@
 package com.theders.dersdroidengine;
 
+import com.theders.dersdroidengine.util.BitmapLoader;
 import com.theders.dersdroidengine.util.FileUtils;
 import com.theders.dersdroidengine.view.GameView;
 
@@ -35,6 +36,7 @@ public class MainActivity extends Activity {
 	    
 	    if (supportsEs2){
 	    	new FileUtils(this);
+	    	new BitmapLoader(this);
 			m_GLView = new GameView(this);
 			setContentView(m_GLView);
 	    }else 

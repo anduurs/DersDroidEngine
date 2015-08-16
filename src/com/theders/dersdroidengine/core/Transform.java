@@ -5,11 +5,11 @@ import com.theders.dersdroidengine.view.GameView;
 
 public class Transform extends Component{
 	
-	private Vector3f m_Translation, m_Rotation, m_Scaling;
+	private Vector3f m_Position, m_Rotation, m_Scaling;
 	private static Matrix4f m_Ortho;
 	
 	public Transform(){
-		m_Translation = new Vector3f(0,0,0);
+		m_Position = new Vector3f(0,0,0);
 		m_Rotation = new Vector3f(0,0,0);
 		m_Scaling = new Vector3f(1,1,1);
 		m_Ortho = new Matrix4f().initOrthographicProjection(0, GameView.WIDTH, GameView.HEIGHT, 0, -1f, 1f);
@@ -17,7 +17,7 @@ public class Transform extends Component{
 	
 	public Matrix4f getTranslationMatrix(){
 		Matrix4f translationMatrix = 
-				new Matrix4f().initTranslationMatrix(m_Translation.getX(), m_Translation.getY(), m_Translation.getZ());
+				new Matrix4f().initTranslationMatrix(m_Position.getX(), m_Position.getY(), m_Position.getZ());
 		return translationMatrix;
 	}
 	
@@ -48,9 +48,9 @@ public class Transform extends Component{
 	}
 
 	public void translate(float x, float y, float z) {
-		this.m_Translation.setX(x);
-		this.m_Translation.setY(y);
-		this.m_Translation.setZ(z);
+		this.m_Position.setX(x);
+		this.m_Position.setY(y);
+		this.m_Position.setZ(z);
 	}
 	
 	public void rotate(float x, float y, float z) {
@@ -73,12 +73,12 @@ public class Transform extends Component{
 		Transform.m_Ortho = new Matrix4f().initOrthographicProjection(left, right, bottom, top, near, far);
 	}
 	
-	public Vector3f getPosition() {return m_Translation;}
+	public Vector3f getPosition() {return m_Position;}
 	public Vector3f getRotationVector() {return m_Rotation;}
 	public Vector3f getScalingVector() {return m_Scaling;}
 	
 	public void setTranslationVector(Vector3f translation) {
-		this.m_Translation = translation;
+		this.m_Position = translation;
 	}
 
 	public void setRotationVector(Vector3f rotation) {

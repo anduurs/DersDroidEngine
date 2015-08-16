@@ -33,6 +33,7 @@ public class Mesh {
 		
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, m_VBO);
 		GLES20.glVertexAttribPointer(0, 3, GLES20.GL_FLOAT, false, Vertex.VERTEX_SIZE * 4, 0);
+		GLES20.glVertexAttribPointer(1, 2, GLES20.GL_FLOAT, false, Vertex.VERTEX_SIZE * 4, 12);
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
 	
 		GLES30.glBindVertexArray(0);
@@ -75,12 +76,14 @@ public class Mesh {
 	public void render(){
 		GLES30.glBindVertexArray(m_VAO);
 		GLES20.glEnableVertexAttribArray(0);
+		GLES20.glEnableVertexAttribArray(1);
 		
 		GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, m_IBO);
 		GLES20.glDrawElements(GLES20.GL_TRIANGLES, m_NumOfIndices, GLES20.GL_UNSIGNED_INT, 0);
 		GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, 0);
 		
 		GLES20.glDisableVertexAttribArray(0);
+		GLES20.glDisableVertexAttribArray(1);
 		GLES30.glBindVertexArray(0);
 	}
 	

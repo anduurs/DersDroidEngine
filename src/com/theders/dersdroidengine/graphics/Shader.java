@@ -26,6 +26,7 @@ public class Shader {
 			createShader(fragmentShader, GLES20.GL_FRAGMENT_SHADER);
 			
 			GLES20.glBindAttribLocation(m_ShaderProgram, 0, "v_Position");
+			GLES20.glBindAttribLocation(m_ShaderProgram, 1, "v_TexCoord");
 			
 			GLES20.glLinkProgram(m_ShaderProgram);
 			GLES20.glValidateProgram(m_ShaderProgram);
