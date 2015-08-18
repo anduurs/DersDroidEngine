@@ -1,6 +1,6 @@
 package com.theders.dersdroidengine.graphics;
 
-import com.theders.dersdroidengine.core.Transform;
+import com.theders.dersdroidengine.components.Transform;
 import com.theders.dersdroidengine.core.Vector2f;
 import com.theders.dersdroidengine.core.Vector3f;
 import com.theders.dersdroidengine.core.Vertex;
@@ -11,7 +11,6 @@ public class Sprite {
 	private Shader m_Shader;
 	private Transform m_Transform;
 	private Vector3f m_Position;
-	
 	private Texture m_Texture;
 	
 	public Sprite(Vector3f position, Texture texture, Shader shader){

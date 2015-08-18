@@ -1,6 +1,7 @@
-package com.theders.dersdroidengine.core;
+package com.theders.dersdroidengine.components;
 
-import com.theders.dersdroidengine.component.Component;
+import com.theders.dersdroidengine.core.Matrix4f;
+import com.theders.dersdroidengine.core.Vector3f;
 import com.theders.dersdroidengine.view.GameView;
 
 public class Transform extends Component{

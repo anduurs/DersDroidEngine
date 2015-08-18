@@ -7,9 +7,9 @@ package com.theders.dersdroidengine.core;
 public class Vector2f {
 	
 	/** The x component of this vector */
-	private float m_X;
+	public float x;
 	/** The y component of this vector */
-	private float m_Y;
+	public float y;
 
 	/**
 	 * Creates a vector in 2d coordinate space with components x and y
@@ -18,8 +18,8 @@ public class Vector2f {
 	 * @param y the y component in the vector
 	 */
 	public Vector2f(float x, float y) {
-		this.m_X = x;
-		this.m_Y = y;
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class Vector2f {
 	 * @return returns the length of the vector
 	 */
 	public float length() {
-		return (float) Math.sqrt(m_X * m_X + m_Y * m_Y);
+		return (float) Math.sqrt(x * x + y * y);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class Vector2f {
 	 * @return returns the value of the dot product
 	 */
 	public float dot(Vector2f v) {
-		return m_X * v.m_X + m_Y * v.m_Y;
+		return x * v.x + y * v.y;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Vector2f {
 	 */
 	public Vector2f normalize() {
 		float length = length();
-		return new Vector2f(m_X / length, m_Y / length);
+		return new Vector2f(x / length, y / length);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class Vector2f {
 		float cos = (float) Math.cos(rad);
 		float sin = (float) Math.sin(rad);
 
-		return new Vector2f(m_X * cos - m_Y * sin, m_X * sin + m_Y * cos);
+		return new Vector2f(x * cos - y * sin, x * sin + y * cos);
 	}
 
 	/**
@@ -77,8 +77,8 @@ public class Vector2f {
 		float cos = (float)Math.cos(rad);
 		float sin = (float)Math.sin(rad);
 		
-		float newX = cos * (m_X - v.m_X) - sin * (m_Y - v.m_Y) + v.m_X;
-		float newY = sin * (m_X - v.m_X) + cos * (m_Y - v.m_Y) + v.m_Y;
+		float newX = cos * (x - v.x) - sin * (y - v.y) + v.x;
+		float newY = sin * (x - v.x) + cos * (y - v.y) + v.y;
 		
 		return new Vector2f(newX, newY);
 	}
@@ -90,7 +90,7 @@ public class Vector2f {
 	 * @return returns the resulting vector of the addition
 	 */
 	public Vector2f add(Vector2f v) {
-		return new Vector2f(m_X + v.m_X, m_Y + v.m_Y);
+		return new Vector2f(x + v.x, y + v.y);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class Vector2f {
 	 * @return the new scaled vector
 	 */
 	public Vector2f add(float scalar) {
-		return new Vector2f(m_X + scalar, m_Y + scalar);
+		return new Vector2f(x + scalar, y + scalar);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Vector2f {
 	 * @return returns the resulting vector of the subtraction
 	 */
 	public Vector2f sub(Vector2f v) {
-		return new Vector2f(m_X - v.m_X, m_Y - v.m_Y);
+		return new Vector2f(x - v.x, y - v.y);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class Vector2f {
 	 * @return the new scaled vector
 	 */
 	public Vector2f sub(float scalar) {
-		return new Vector2f(m_X - scalar, m_Y - scalar);
+		return new Vector2f(x - scalar, y - scalar);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Vector2f {
 	 * @return returns the resulting vector of the multiplication
 	 */
 	public Vector2f mul(Vector2f v) {
-		return new Vector2f(m_X * v.m_X, m_Y * v.m_Y);
+		return new Vector2f(x * v.x, y * v.y);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Vector2f {
 	 * @return returns a new scaled vector
 	 */
 	public Vector2f mul(float scalar) {
-		return new Vector2f(m_X * scalar, m_Y * scalar);
+		return new Vector2f(x * scalar, y * scalar);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class Vector2f {
 	 * @return returns the resulting vector of the division
 	 */
 	public Vector2f div(Vector2f v) {
-		return new Vector2f(m_X / v.m_X, m_Y / v.m_Y);
+		return new Vector2f(x / v.x, y / v.y);
 	}
 
 	/**
@@ -160,14 +160,14 @@ public class Vector2f {
 	 * @return returns a new scaled vector
 	 */
 	public Vector2f div(float scalar) {
-		return new Vector2f(m_X / scalar, m_Y / scalar);
+		return new Vector2f(x / scalar, y / scalar);
 	}
 
 	/**
 	 * Returns a clone of the vector
 	 */
 	public Vector2f clone() {
-		return new Vector2f(m_X, m_Y);
+		return new Vector2f(x, y);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class Vector2f {
 	 */
 	@Override
 	public String toString() {
-		return "(" + m_X + " " + m_Y + ")";
+		return "(" + x + " " + y + ")";
 	}
 	
 	/**
@@ -184,7 +184,7 @@ public class Vector2f {
 	 * @return returns true if they are equal and false if they are not
 	 */
 	public boolean equals(Vector2f v){
-		return m_X == v.m_X && m_Y == v.m_Y;
+		return x == v.x && y == v.y;
 	}
 
 	/**
@@ -193,22 +193,22 @@ public class Vector2f {
 	 * @param y the new y position
 	 */
 	public void set(float x, float y){
-		this.m_X = x;
-		this.m_Y = y;
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
 	 * Returns the x component of this vector
 	 */
 	public float getX() {
-		return m_X;
+		return x;
 	}
 
 	/**
 	 * Returns the y component of this vector
 	 */
 	public float getY() {
-		return m_Y;
+		return y;
 	}
 
 }

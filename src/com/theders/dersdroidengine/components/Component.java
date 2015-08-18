@@ -1,6 +1,6 @@
-package com.theders.dersdroidengine.component;
+package com.theders.dersdroidengine.components;
 
-import com.theders.dersdroidengine.gameobject.GameObject;
+import com.theders.dersdroidengine.core.GameObject;
 
 public abstract class Component {
 	
@@ -18,6 +18,7 @@ public abstract class Component {
 		m_GameObject = null;
 	}
 	
+	public void init(){}
 	public void update(float dt){}
 	
 	public GameObject getGameObject() {

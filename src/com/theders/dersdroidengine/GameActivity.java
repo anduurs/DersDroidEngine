@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends Activity {
+public class GameActivity extends Activity {
 
 	private GLSurfaceView m_GLView;
 	
