@@ -19,7 +19,8 @@ public class BitmapLoader {
 		BitmapLoader.activity = activity;
 		
 		bitmapLib.put("test", loadBitmap("test"));
-		
+		bitmapLib.put("flappy", loadBitmap("flappy"));
+		bitmapLib.put("atlas", loadBitmap("textureatlas"));
 	}
 	
 	/**

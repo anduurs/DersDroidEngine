@@ -42,7 +42,7 @@ public class Mesh {
 	}
 	
 	private void generateVertexBuffer(Vertex[] vertices){
-		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(vertices);
+		FloatBuffer vertexBuffer = BufferUtils.createVertexBuffer(vertices);
 		
 		final int[] vBuffers = new int[1];
 		
@@ -58,7 +58,7 @@ public class Mesh {
 	}
 	
 	private void generateIndexBuffer(int[] indices){
-		IntBuffer indexBuffer = BufferUtils.createIntBuffer(indices);
+		IntBuffer indexBuffer = BufferUtils.createIndexBuffer(indices);
 		
 		final int[] iBuffers = new int[1];
 		
@@ -87,7 +87,7 @@ public class Mesh {
 		GLES30.glBindVertexArray(0);
 	}
 	
-	public void release(){
+	public void dispose(){
 		final int[] buffersToDelete = new int[]{m_VBO, m_IBO, m_VAO};
 		GLES20.glDeleteBuffers(buffersToDelete.length, buffersToDelete, 0);
 	}

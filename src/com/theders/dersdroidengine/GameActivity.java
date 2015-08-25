@@ -9,14 +9,13 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class GameActivity extends Activity {
 
-	private GLSurfaceView m_GLView;
+	private GameView m_GLView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +26,8 @@ public class GameActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
 				WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+	
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
@@ -43,9 +44,10 @@ public class GameActivity extends Activity {
 	    	return;
 	}
 	
+	@Override
 	protected void onResume(){
 		super.onResume();
-		m_GLView.onResume();
+     	m_GLView.onResume();
 	}
 	
 	@Override
@@ -54,6 +56,10 @@ public class GameActivity extends Activity {
 	    m_GLView.onPause();
 	}
 	
-	
+	@Override
+	protected void onDestroy(){
+		m_GLView.dispose();
+		super.onDestroy();
+	}
 	
 }

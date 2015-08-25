@@ -9,7 +9,7 @@ import com.theders.dersdroidengine.core.Vertex;
 
 public class BufferUtils {
 	
-	public static FloatBuffer createFloatBuffer(Vertex[] vertices){
+	public static FloatBuffer createVertexBuffer(Vertex[] vertices){
 		FloatBuffer vertexBuffer;
 		
 		ByteBuffer bb = ByteBuffer.allocateDirect(vertices.length * Vertex.VERTEX_SIZE * 4);
@@ -30,7 +30,7 @@ public class BufferUtils {
 		return vertexBuffer;
 	}
 	
-	public static IntBuffer createIntBuffer(int[] indices){
+	public static IntBuffer createIndexBuffer(int[] indices){
 		IntBuffer indexBuffer;
 		
 		ByteBuffer bb = ByteBuffer.allocateDirect(indices.length * 4);

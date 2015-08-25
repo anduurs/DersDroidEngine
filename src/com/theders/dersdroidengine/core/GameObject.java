@@ -1,11 +1,13 @@
 package com.theders.dersdroidengine.core;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.theders.dersdroidengine.components.Component;
 import com.theders.dersdroidengine.components.RenderableComponent;
 import com.theders.dersdroidengine.components.Transform;
+import com.theders.dersdroidengine.graphics.SpriteBatcher;
 
 public class GameObject {
 	
@@ -22,6 +24,14 @@ public class GameObject {
 	}
 	
 	public GameObject(String tag){
+		this(tag, 0, 0, 0);
+	}
+	
+	public GameObject(String tag, float x, float y){
+		this(tag, x, y, 0);
+	}
+	
+	public GameObject(String tag, float x, float y, float z){
 		m_Tag = tag;
 		m_Parent = null;
 		
@@ -30,6 +40,7 @@ public class GameObject {
 		m_RenderComponents = new ArrayList<RenderableComponent>();
 		
 		m_Transform = new Transform();
+		m_Transform.translate(x, y, z);
 		m_Transform.setGameObject(this);
 		
 		addComponent(m_Transform);
@@ -60,10 +71,11 @@ public class GameObject {
 	}
 	
 	public Component findComponentByTag(String tag){
-		for(Component c : m_Components)
+		for(Iterator<Component> i = m_Components.iterator(); i.hasNext();){
+			Component c = i.next();
 			if(c.getTag().equals(tag))
 				return c;
-			
+		}
 		return null;
 	}
 	
@@ -80,9 +92,10 @@ public class GameObject {
 	public GameObject findChildByTag(String tag){
 		if(m_Tag.equals(tag))
 			return this;
-		for(GameObject go : m_Children)
+		for(Iterator<GameObject> i = m_Children.iterator(); i.hasNext();){
+			GameObject go = i.next();
 			go.findChildByTag(tag);
-		
+		}
 		return null;
 	}
 	
@@ -98,28 +111,31 @@ public class GameObject {
 			go.updateAll(dt);
 	}
 	
-	public void renderComponents(){
+	public void renderComponents(SpriteBatcher batch){
 		for(RenderableComponent rc : m_RenderComponents)
 			if(rc.isEnabled())
-				rc.render();
+				rc.render(batch);
 	}
 	
-	public void renderAll(){
-		renderComponents();
+	public void renderAll(SpriteBatcher batch){
+		renderComponents(batch);
 		for(GameObject go : m_Children)
-			go.renderAll();
+			go.renderAll(batch);
 	}
 	
 	public void destroy(){
-		for(GameObject go : m_Children)
-			go.destroy();
 		
-		m_Children.clear();
-		m_Components.clear();
-		m_RenderComponents.clear();
 		
-		if(m_Parent != null)
-			m_Parent.removeChild(this);
+		
+//		m_Children.clear();
+//		m_Components.clear();
+//		m_RenderComponents.clear();
+//		
+//		if(m_Parent != null)
+//			m_Parent.removeChild(this);
+//		
+//		for(GameObject go : m_Children)
+//			go.destroy();
 	}
 
 	public String getTag() {

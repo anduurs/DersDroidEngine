@@ -1,9 +1,11 @@
 package com.theders.dersdroidengine.core;
 
+import com.theders.dersdroidengine.graphics.SpriteBatcher;
+
 public class SceneGraph {
 	
 	private GameObject m_Root;
-	
+
 	public SceneGraph(){
 		m_Root = new GameObject("Root");
 	}
@@ -12,14 +14,18 @@ public class SceneGraph {
 		m_Root.addChild(gameObject);
 	}
 	
+	public void destroy(){
+		m_Root.destroy();
+	}
+	
 	public void update(float dt){
 		m_Root.updateAll(dt);
 	}
 	
-	public void render(){
-		m_Root.renderAll();
+	public void render(SpriteBatcher batch){
+		m_Root.renderAll(batch);
 	}
-
+	
 	public GameObject getRoot() {
 		return m_Root;
 	}

@@ -19,7 +19,7 @@ public class Matrix4f {
 	 * Sets the current matrix to the identity matrix
 	 * @return this matrix transformed to the identity matrix
 	 */
-	public Matrix4f initIdentityMatrix(){
+	public Matrix4f setIdentityMatrix(){
 		m_Matrix[0][0] = 1;	m_Matrix[0][1] = 0;	m_Matrix[0][2] = 0;	m_Matrix[0][3] = 0;
 		m_Matrix[1][0] = 0;	m_Matrix[1][1] = 1;	m_Matrix[1][2] = 0;	m_Matrix[1][3] = 0;
 		m_Matrix[2][0] = 0;	m_Matrix[2][1] = 0;	m_Matrix[2][2] = 1;	m_Matrix[2][3] = 0;
@@ -35,7 +35,7 @@ public class Matrix4f {
 	 * @param z amount of translation on the z-axis
 	 * @return this matrix transformed to the translation matrix
 	 */
-	public Matrix4f initTranslationMatrix(float x, float y, float z){
+	public Matrix4f setTranslationMatrix(float x, float y, float z){
 		m_Matrix[0][0] = 1;	m_Matrix[0][1] = 0;	m_Matrix[0][2] = 0;	m_Matrix[0][3] = x;
 		m_Matrix[1][0] = 0;	m_Matrix[1][1] = 1;	m_Matrix[1][2] = 0;	m_Matrix[1][3] = y;
 		m_Matrix[2][0] = 0;	m_Matrix[2][1] = 0;	m_Matrix[2][2] = 1;	m_Matrix[2][3] = z;
@@ -51,7 +51,7 @@ public class Matrix4f {
 	 * @param z amount of scaling on the z-axis
 	 * @return this matrix transformed to the scaling matrix
 	 */
-	public Matrix4f initScalingMatrix(float x, float y, float z){
+	public Matrix4f setScalingMatrix(float x, float y, float z){
 		m_Matrix[0][0] = x;	m_Matrix[0][1] = 0;	m_Matrix[0][2] = 0;	m_Matrix[0][3] = 0;
 		m_Matrix[1][0] = 0;	m_Matrix[1][1] = y;	m_Matrix[1][2] = 0;	m_Matrix[1][3] = 0;
 		m_Matrix[2][0] = 0;	m_Matrix[2][1] = 0;	m_Matrix[2][2] = z;	m_Matrix[2][3] = 0;
@@ -67,7 +67,7 @@ public class Matrix4f {
 	 * @param z the angle in degrees which will be rotated around the z-axis
 	 * @return this matrix transformed to the rotation matrix
 	 */
-	public Matrix4f initRotationMatrix(float x, float y, float z){
+	public Matrix4f setRotationMatrix(float x, float y, float z){
 		Matrix4f rx = new Matrix4f();
 		Matrix4f ry = new Matrix4f();
 		Matrix4f rz = new Matrix4f();
@@ -106,7 +106,7 @@ public class Matrix4f {
 	 * @param far
 	 * @return this matrix transformed to the orthographic projection matrix
 	 */
-	public Matrix4f initOrthographicProjection(float left, float right, float bottom, float top, float near, float far){
+	public Matrix4f setOrthographicProjection(float left, float right, float bottom, float top, float near, float far){
 		m_Matrix[0][0] = 2/(right - left);	m_Matrix[0][1] = 0;					m_Matrix[0][2] = 0;				m_Matrix[0][3] = -(right + left)/(right - left);
 		m_Matrix[1][0] = 0;					m_Matrix[1][1] = 2/(top - bottom);	m_Matrix[1][2] = 0;				m_Matrix[1][3] = -(top + bottom)/(top - bottom);
 		m_Matrix[2][0] = 0;					m_Matrix[2][1] = 0;					m_Matrix[2][2] = 2/(far - near);	m_Matrix[2][3] = -(far + near)/(far - near);

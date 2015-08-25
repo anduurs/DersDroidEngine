@@ -71,6 +71,11 @@ public class Texture {
 	public void unbind(){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 	}
+	
+	public void dispose(){
+		final int[] buffersToDelete = new int[]{m_ID};
+		GLES20.glDeleteBuffers(buffersToDelete.length, buffersToDelete, 0);
+	}
 
 	public int getID() {
 		return m_ID;
