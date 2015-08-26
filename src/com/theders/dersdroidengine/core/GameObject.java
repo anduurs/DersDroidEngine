@@ -18,6 +18,7 @@ public class GameObject {
 	private String m_Tag;
 	private Transform m_Transform;
 	private GameObject m_Parent;
+	private boolean m_Alive;
 	
 	public GameObject(){
 		this("GameObject");
@@ -34,6 +35,7 @@ public class GameObject {
 	public GameObject(String tag, float x, float y, float z){
 		m_Tag = tag;
 		m_Parent = null;
+		m_Alive = true;
 		
 		m_Children = new ArrayList<GameObject>();
 		m_Components = new ArrayList<Component>();
@@ -59,23 +61,10 @@ public class GameObject {
 		return component;
 	}
 	
-	public Component removeComponent(Component component){
-		if(component instanceof RenderableComponent){
-			RenderableComponent rc = (RenderableComponent) component;
-			m_RenderComponents.remove(rc);
-		}
-		
-		m_Components.remove(component);
-		
-		return component;
-	}
-	
 	public Component findComponentByTag(String tag){
-		for(Iterator<Component> i = m_Components.iterator(); i.hasNext();){
-			Component c = i.next();
+		for(Component c : m_Components)
 			if(c.getTag().equals(tag))
 				return c;
-		}
 		return null;
 	}
 	
@@ -85,17 +74,11 @@ public class GameObject {
 		return gameObject;
 	}
 	
-	public void removeChild(GameObject gameObject){
-		m_Children.remove(gameObject);
-	}
-	
 	public GameObject findChildByTag(String tag){
 		if(m_Tag.equals(tag))
 			return this;
-		for(Iterator<GameObject> i = m_Children.iterator(); i.hasNext();){
-			GameObject go = i.next();
+		for(GameObject go : m_Children)
 			go.findChildByTag(tag);
-		}
 		return null;
 	}
 	
@@ -123,19 +106,24 @@ public class GameObject {
 			go.renderAll(batch);
 	}
 	
+	public void clearDeadGameObjects(){
+		Iterator<GameObject> i = m_Children.iterator();
+		while(i.hasNext()){
+			GameObject go = i.next();
+			if(!go.isAlive())
+				i.remove();
+			else go.clearDeadGameObjects();
+		}
+	}
+	
 	public void destroy(){
+		m_Alive = false;
+		for(GameObject go : m_Children)
+			go.destroy();
 		
-		
-		
-//		m_Children.clear();
-//		m_Components.clear();
-//		m_RenderComponents.clear();
-//		
-//		if(m_Parent != null)
-//			m_Parent.removeChild(this);
-//		
-//		for(GameObject go : m_Children)
-//			go.destroy();
+		m_Children.clear();
+		m_Components.clear();
+		m_RenderComponents.clear();
 	}
 
 	public String getTag() {
@@ -149,9 +137,17 @@ public class GameObject {
 	public GameObject getParent() {
 		return m_Parent;
 	}
+	
+	public boolean isAlive(){
+		return m_Alive;
+	}
 
 	public void setParent(GameObject parent) {
 		m_Parent = parent;
+	}
+	
+	public int numOfChildren(){
+		return m_Children.size();
 	}
 	
 }

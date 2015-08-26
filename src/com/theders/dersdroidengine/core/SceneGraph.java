@@ -2,6 +2,8 @@ package com.theders.dersdroidengine.core;
 
 import com.theders.dersdroidengine.graphics.SpriteBatcher;
 
+import android.util.Log;
+
 public class SceneGraph {
 	
 	private GameObject m_Root;
@@ -20,6 +22,7 @@ public class SceneGraph {
 	
 	public void update(float dt){
 		m_Root.updateAll(dt);
+		m_Root.clearDeadGameObjects();
 	}
 	
 	public void render(SpriteBatcher batch){
