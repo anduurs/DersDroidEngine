@@ -13,7 +13,6 @@ import com.theders.dersdroidengine.util.BufferUtils;
 
 import android.opengl.GLES20;
 import android.opengl.GLES30;
-import android.util.Log;
 
 public class SpriteBatcher {
 	
@@ -106,8 +105,7 @@ public class SpriteBatcher {
 		indexBuffer = null;
 	}
 	
-	public void begin(TextureAtlas atlas){
-		atlas.bind();
+	public void begin(){
 		m_BufferIndex = 0;
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, m_VBO);
 		
@@ -151,7 +149,7 @@ public class SpriteBatcher {
 		m_VertexBuffer.position(0);
 	}
 	
-	public void flush(TextureAtlas atlas){
+	public void flush(){
 		GLES30.glBindVertexArray(m_VAO);
 		
 		GLES20.glEnableVertexAttribArray(0);
@@ -165,8 +163,6 @@ public class SpriteBatcher {
 		GLES20.glDisableVertexAttribArray(1);
 		
 		GLES30.glBindVertexArray(0);
-		
-		atlas.unbind();
 		
 		m_SpriteCount = 0;
 	}

@@ -2,8 +2,6 @@ package com.theders.dersdroidengine.core;
 
 import com.theders.dersdroidengine.graphics.SpriteBatcher;
 
-import android.util.Log;
-
 public class SceneGraph {
 	
 	private GameObject m_Root;

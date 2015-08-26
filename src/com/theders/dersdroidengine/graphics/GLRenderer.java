@@ -22,7 +22,7 @@ public class GLRenderer implements GLSurfaceView.Renderer{
 	private Shader m_Shader;
 	private SceneGraph m_SceneGraph;
 	private SpriteBatcher m_Batch;
-	TextureAtlas atlas;
+	private Texture m_TextureAtlas;
 	
 	List<GameObject> list;
 	
@@ -34,43 +34,48 @@ public class GLRenderer implements GLSurfaceView.Renderer{
 		list = new ArrayList<GameObject>();
 		
 		m_SceneGraph = new SceneGraph();
-		atlas = new TextureAtlas(new Texture("atlas"), 16, 16);
+		m_TextureAtlas = new Texture("atlas");
 		m_Batch = new SpriteBatcher();
 		
-		for(int i = 0; i < 50; i++){
-			float y = Randomizer.getFloat(0, 400);
-			GameObject go = new GameObject("Player" + i, 0, y);
-			float scale = Randomizer.getFloat(3.0f, 5.0f);
-			go.getTransform().scale(scale, scale, scale);
-			go.addComponent(new Sprite("PlayerSprite" + i, go.getTransform().getPosition().x, 
-					go.getTransform().getPosition().y, 16, 16, 0, 0, atlas));
-			float speed = Randomizer.getFloat(10.0f, 30.0f);
-			go.addComponent(new BasicMovement(speed));
-			list.add(go);
-			m_SceneGraph.addChild(go);
-		}
+		TextureRegion region = new TextureRegion(m_TextureAtlas, 0, 192, 64, 64);
+		
+		GameObject go = new GameObject("Player", 100, 100);
+		go.addComponent(new Sprite("PlayerSprite", go.getTransform().getPosition().x, go.getTransform().getPosition().y, region));
+		m_SceneGraph.addChild(go);
+		
+		
+//		for(int i = 0; i < 50; i++){
+//			float y = Randomizer.getFloat(0, 400);
+//			GameObject go = new GameObject("Player" + i, 0, y);
+//			float scale = 1.0f; //Randomizer.getFloat(3.0f, 5.0f);
+//			go.getTransform().scale(scale, scale, scale);
+//			go.addComponent(new Sprite("PlayerSprite" + i, go.getTransform().getPosition().x, 
+//					go.getTransform().getPosition().y, region));
+//			float speed = Randomizer.getFloat(10.0f, 30.0f);
+//			go.addComponent(new BasicMovement(speed));
+//			list.add(go);
+//			m_SceneGraph.addChild(go);
+//		}
 		
 	}
-	
-	int timer = 0;
-	int i = 0;
 	
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 		
-		timer++;
-
 		m_SceneGraph.update(0.16f);
 		
 		m_Shader.enable();
 		m_Shader.setUniform("transformation", Transform.getOrthoProjection());
 		
-		m_Batch.begin(atlas);
+		m_TextureAtlas.bind();
 		
+		m_Batch.begin();
 		m_SceneGraph.render(m_Batch);
 		m_Batch.end();
-		m_Batch.flush(atlas);
+		m_Batch.flush();
+		
+		m_TextureAtlas.unbind();
 		
 		m_Shader.disable();
 	}

@@ -6,7 +6,6 @@ import com.theders.dersdroidengine.graphics.SpriteBatcher;
 public abstract class RenderableComponent extends Component{
 	
 	protected Vertex[] m_Vertices;
-	protected float m_Row, m_Col;
 	protected int m_Width, m_Height;
 	
 	public RenderableComponent(String tag){
@@ -19,14 +18,6 @@ public abstract class RenderableComponent extends Component{
 	
 	public Vertex[] getVertices(){
 		return m_Vertices;
-	}
-	
-	public float getRow() {
-		return m_Row;
-	}
-
-	public float getCol() {
-		return m_Col;
 	}
 
 	public int getWidth() {

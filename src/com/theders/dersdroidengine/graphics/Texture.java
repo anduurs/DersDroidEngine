@@ -81,12 +81,12 @@ public class Texture {
 		return m_ID;
 	}
 
-	public int getWidth() {
-		return m_Width;
+	public float getWidth() {
+		return (float)m_Width;
 	}
 
-	public int getHeight() {
-		return m_Height;
+	public float getHeight() {
+		return (float)m_Height;
 	}
 
 	
