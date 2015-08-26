@@ -46,31 +46,38 @@ public class Vector2f {
 	 * a vector which has a magnitude of one Useful do determine the direction
 	 * of entities, often used as the direction vector
 	 * 
-	 * @return returns the new normalized vector
+	 * @return returns this vector normalized
 	 */
 	public Vector2f normalize() {
 		float length = length();
-		return new Vector2f(x / length, y / length);
+		
+		x = x / length;
+		y = y / length;
+		
+		return this;
 	}
 
 	/**
 	 * Rotates the vector around origo by the given angle
 	 * @param angle the angle in degrees which the vector will be rotated by around origo
-	 * @return returns a new rotated vector
+	 * @return returns this vector rotated 
 	 */
 	public Vector2f rotate(float angle) {
 		float rad = (float) Math.toRadians(angle);
 		float cos = (float) Math.cos(rad);
 		float sin = (float) Math.sin(rad);
 
-		return new Vector2f(x * cos - y * sin, x * sin + y * cos);
+		x = x * cos - y * sin;
+		y = x * sin + y * cos;
+		
+		return this;
 	}
 
 	/**
 	 * Rotates the vector around the given vector by the given angle
 	 * @param v the vector to rotate around
 	 * @param angle the angle in degrees which the vector will be rotated by
-	 * @return returns a new rotated vector
+	 * @return returns this vector rotated 
 	 */
 	public Vector2f rotate(Vector2f v, float angle){
 		float rad = (float)Math.toRadians(angle);
@@ -80,87 +87,106 @@ public class Vector2f {
 		float newX = cos * (x - v.x) - sin * (y - v.y) + v.x;
 		float newY = sin * (x - v.x) + cos * (y - v.y) + v.y;
 		
-		return new Vector2f(newX, newY);
+		x = newX;
+		y = newY;
+		
+		return this;
 	}
 
 	/**
 	 * Addition of two vectors
 	 * 
 	 * @param v the vector to add
-	 * @return returns the resulting vector of the addition
+	 * @return returns this vector after addition with the given vector
 	 */
 	public Vector2f add(Vector2f v) {
-		return new Vector2f(x + v.x, y + v.y);
+		x = x + v.x;
+		y = y + v.y;
+		return this;
 	}
 
 	/**
 	 * Adds the x and y components with a given scalar
 	 * 
 	 * @param scalar the value which the components will be added with
-	 * @return the new scaled vector
+	 * @return this vector scaled 
 	 */
 	public Vector2f add(float scalar) {
-		return new Vector2f(x + scalar, y + scalar);
+		x = x + scalar;
+		y = y + scalar;
+		return this;
 	}
 
 	/**
 	 * Subtraction of two vectors
 	 * 
 	 * @param v the vector to subtract
-	 * @return returns the resulting vector of the subtraction
+	 * @return returns this vector after subtracting with the given vector
 	 */
 	public Vector2f sub(Vector2f v) {
-		return new Vector2f(x - v.x, y - v.y);
+		x = x - v.x;
+		y = y - v.y;
+		return this;
 	}
 
 	/**
 	 * Subtracts the x and y components with a given scalar
 	 * 
 	 * @param scalar the value which the components will be subtracted with
-	 * @return the new scaled vector
+	 * @return this vector scaled
 	 */
 	public Vector2f sub(float scalar) {
-		return new Vector2f(x - scalar, y - scalar);
+		x = x - scalar;
+		y = y - scalar;
+		return this;
 	}
 
 	/**
 	 * Multiplication of two vectors
 	 * 
 	 * @param v the vector to multiply
-	 * @return returns the resulting vector of the multiplication
+	 * @return returns this vector after multiplying with the given vector
 	 */
 	public Vector2f mul(Vector2f v) {
-		return new Vector2f(x * v.x, y * v.y);
+		x = x * v.x;
+		y = y * v.y;
+		return this;
 	}
 
 	/**
 	 * Scales a vector by multiplying the x and y components with a scalar
 	 * 
 	 * @param scalar the value which the components will be multiplied with
-	 * @return returns a new scaled vector
+	 * @return returns this vector scaled
 	 */
 	public Vector2f mul(float scalar) {
-		return new Vector2f(x * scalar, y * scalar);
+		x = x * scalar;
+		y = y * scalar;
+		return this;
 	}
 
 	/**
 	 * Division of two vectors
 	 * 
 	 * @param v the vector to divide
-	 * @return returns the resulting vector of the division
+	 * @return returns this vector after the division with the given vector
 	 */
 	public Vector2f div(Vector2f v) {
-		return new Vector2f(x / v.x, y / v.y);
+		x = x / v.x;
+		y = y / v.y;
+		return this;
 	}
 
 	/**
 	 * Scales a vector by dividing the x and y components with a scalar
 	 * 
 	 * @param scalar the value which the components will be divided with
-	 * @return returns a new scaled vector
+	 * @return returns this vector scaled
 	 */
 	public Vector2f div(float scalar) {
-		return new Vector2f(x / scalar, y / scalar);
+		x = x / scalar;
+		y = y / scalar;
+		return this;
 	}
 
 	/**

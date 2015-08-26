@@ -98,16 +98,16 @@ public class GameObject {
 			go.updateAll(dt);
 	}
 	
-	public void renderComponents(SpriteBatcher batch){
+	public void renderComponents(SpriteBatcher batch, float interpolation){
 		for(RenderableComponent rc : m_RenderComponents)
 			if(rc.isEnabled())
-				rc.render(batch);
+				rc.render(batch, interpolation);
 	}
 	
-	public void renderAll(SpriteBatcher batch){
-		renderComponents(batch);
+	public void renderAll(SpriteBatcher batch, float interpolation){
+		renderComponents(batch, interpolation);
 		for(GameObject go : m_Children)
-			go.renderAll(batch);
+			go.renderAll(batch, interpolation);
 	}
 	
 	public void clearDeadGameObjects(){

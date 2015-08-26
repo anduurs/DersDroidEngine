@@ -12,8 +12,8 @@ public abstract class RenderableComponent extends Component{
 		super(tag);
 	}
 
-	public void render(SpriteBatcher batch){
-		batch.submit(this);
+	public void render(SpriteBatcher batch, float interpolation){
+		batch.submit(this, interpolation);
 	}
 	
 	public Vertex[] getVertices(){

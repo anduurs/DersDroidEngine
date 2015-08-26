@@ -6,6 +6,8 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import com.theders.dersdroidengine.components.BasicMovement;
+import com.theders.dersdroidengine.components.Component;
 import com.theders.dersdroidengine.components.RenderableComponent;
 import com.theders.dersdroidengine.core.Vector3f;
 import com.theders.dersdroidengine.core.Vertex;
@@ -120,9 +122,27 @@ public class SpriteBatcher {
 		}
 	}
 	
-	public void submit(RenderableComponent renderable){
+	public void submit(RenderableComponent renderable, float interpolation){
 		Vertex[] vertices = renderable.getVertices();
-
+		
+//		Vector3f interpolatedPosition = null;
+//		Vector3f currentPosition = renderable.getGameObject().getTransform().getPosition();
+//		Vector3f nextPosition = null;
+//		
+//		Component c = renderable.getGameObject().findComponentByTag("BasicMovement");
+//		
+//		if(c instanceof BasicMovement){
+//			BasicMovement bc = (BasicMovement) c;
+//			nextPosition = bc.nextPosition;
+//			interpolatedPosition = currentPosition.mul(interpolation).add(nextPosition.mul((1.0f - interpolation)));
+//		}
+//		 
+//		if(interpolatedPosition != null){
+//			renderable.getGameObject().getTransform().getPosition().x = interpolatedPosition.x;
+//			renderable.getGameObject().getTransform().getPosition().y = interpolatedPosition.y;
+//			renderable.getGameObject().getTransform().getPosition().z = interpolatedPosition.z;
+//		}
+		
 		for(int i = 0; i < vertices.length; i++){
 			pos.x = vertices[i].getPosition().x;
 			pos.y = vertices[i].getPosition().y;

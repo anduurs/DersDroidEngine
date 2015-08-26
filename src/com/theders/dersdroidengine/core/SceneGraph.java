@@ -23,8 +23,8 @@ public class SceneGraph {
 		m_Root.clearDeadGameObjects();
 	}
 	
-	public void render(SpriteBatcher batch){
-		m_Root.renderAll(batch);
+	public void render(SpriteBatcher batch, float interpolation){
+		m_Root.renderAll(batch, interpolation);
 	}
 	
 	public GameObject getRoot() {

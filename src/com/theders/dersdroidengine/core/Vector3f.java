@@ -21,16 +21,21 @@ public class Vector3f {
 	}
 
 	public Vector3f cross(Vector3f v){
-		float x_ = y * v.getZ() - z * v.getY();
-		float y_ = z * v.getX() - x * v.getZ();
-		float z_ = x * v.getY() - y * v.getX();
+		x = y * v.getZ() - z * v.getY();
+		y = z * v.getX() - x * v.getZ();
+		z = x * v.getY() - y * v.getX();
 
-		return new Vector3f(x_, y_, z_);
+		return this;
 	}
 
 	public Vector3f normalize(){
 		float length = length();
-		return new Vector3f(x / length, y / length, z / length);
+		
+		x = x / length;
+		y = y / length;
+		z = z / length;
+		
+		return this;
 	}
 	
 	public Vector3f rotate(Vector3f axis, float angle){
@@ -43,39 +48,66 @@ public class Vector3f {
 	}
 
 	public Vector3f add(Vector3f v){
-		return new Vector3f(x + v.getX(), y + v.getY(), z + v.getZ());
+		x = x + v.x;
+		y = y + v.y;
+		z = z + v.z;
+		return this;
 	}
 
 	public Vector3f add(float scalar){
-		return new Vector3f(x + scalar, y + scalar, z + scalar);
+		x = x + scalar;
+		y = y + scalar;
+		z = z + scalar;
+		return this;
 	}
 
 	public Vector3f sub(Vector3f v){
-		return new Vector3f(x - v.getX(), y - v.getY(), z - v.getZ());
+		x = x - v.x;
+		y = y - v.y;
+		z = z - v.z;
+		return this;
 	}
 
 	public Vector3f sub(float scalar){
-		return new Vector3f(x - scalar, y - scalar, z - scalar);
+		x = x - scalar;
+		y = y - scalar;
+		z = z - scalar;
+		return this;
 	}
 
 	public Vector3f mul(Vector3f v){
-		return new Vector3f(x * v.getX(), y * v.getY(), z * v.getZ());
+		x = x * v.x;
+		y = y * v.y;
+		z = z * v.z;
+		return this;
 	}
 
 	public Vector3f mul(float scalar){
-		return new Vector3f(x * scalar, y * scalar, z * scalar);
+		x = x * scalar;
+		y = y * scalar;
+		z = z * scalar;
+		return this;
 	}
 
 	public Vector3f div(Vector3f v){
-		return new Vector3f(x / v.getX(), y / v.getY(), z / v.getZ());
+		x = x / v.x;
+		y = y / v.y;
+		z = z / v.z;
+		return this;
 	}
 
 	public Vector3f div(float scalar){
-		return new Vector3f(x / scalar, y / scalar, z / scalar);
+		x = x / scalar;
+		y = y / scalar;
+		z = z / scalar;
+		return this;
 	}
 	
 	public Vector3f abs(){
-		return new Vector3f(Math.abs(x), Math.abs(y), Math.abs(z));
+		x = Math.abs(x);
+		y = Math.abs(y);
+		z = Math.abs(z);
+		return this;
 	}
 	
 	public Vector3f clone(){
