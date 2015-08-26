@@ -8,6 +8,7 @@ import com.theders.dersdroidengine.components.Component;
 import com.theders.dersdroidengine.components.RenderableComponent;
 import com.theders.dersdroidengine.components.Transform;
 import com.theders.dersdroidengine.graphics.SpriteBatcher;
+import com.theders.dersdroidengine.view.GameView;
 
 public class GameObject {
 	
@@ -33,6 +34,9 @@ public class GameObject {
 	}
 	
 	public GameObject(String tag, float x, float y, float z){
+		x = x * GameView.scaleX;
+		y = y * GameView.scaleY;
+		
 		m_Tag = tag;
 		m_Parent = null;
 		m_Alive = true;
