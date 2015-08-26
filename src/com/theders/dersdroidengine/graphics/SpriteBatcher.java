@@ -10,6 +10,7 @@ import com.theders.dersdroidengine.components.RenderableComponent;
 import com.theders.dersdroidengine.core.Vector3f;
 import com.theders.dersdroidengine.core.Vertex;
 import com.theders.dersdroidengine.util.BufferUtils;
+import com.theders.dersdroidengine.view.GameView;
 
 import android.opengl.GLES20;
 import android.opengl.GLES30;

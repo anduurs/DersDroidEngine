@@ -11,7 +11,7 @@ import com.theders.dersdroidengine.components.Sprite;
 import com.theders.dersdroidengine.components.Transform;
 import com.theders.dersdroidengine.core.GameObject;
 import com.theders.dersdroidengine.core.SceneGraph;
-import com.theders.dersdroidengine.util.Randomizer;
+import com.theders.dersdroidengine.view.GameView;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -24,23 +24,29 @@ public class GLRenderer implements GLSurfaceView.Renderer{
 	private SpriteBatcher m_Batch;
 	private Texture m_TextureAtlas;
 	
-	List<GameObject> list;
+	private List<GameObject> m_GameObjectPool;
 	
 	@Override
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		initGL();
 		initShader();
 		
-		list = new ArrayList<GameObject>();
+		m_GameObjectPool = new ArrayList<GameObject>();
 		
 		m_SceneGraph = new SceneGraph();
 		m_TextureAtlas = new Texture("atlas");
 		m_Batch = new SpriteBatcher();
 		
-		TextureRegion region = new TextureRegion(m_TextureAtlas, 0, 192, 64, 64);
+		TextureRegion region = new TextureRegion(m_TextureAtlas, 0, 16*5, 32, 32);
 		
-		GameObject go = new GameObject("Player", 100, 100);
-		go.addComponent(new Sprite("PlayerSprite", go.getTransform().getPosition().x, go.getTransform().getPosition().y, region));
+		GameObject go = new GameObject("Player", GameView.WIDTH / 2.0f,
+				GameView.HEIGHT / 2.0f);
+		
+		go.addComponent(new Sprite("PlayerSprite", go.getTransform().getPosition().x, 
+				go.getTransform().getPosition().y, region));
+		
+		go.addComponent(new BasicMovement(10.0f));
+		
 		m_SceneGraph.addChild(go);
 		
 		
@@ -113,6 +119,7 @@ public class GLRenderer implements GLSurfaceView.Renderer{
 			//m_SceneGraph.destroy();
 			m_Batch.dispose();
 			m_Shader.deleteShader();
+			m_TextureAtlas.dispose();
 		}
 	}
 	
